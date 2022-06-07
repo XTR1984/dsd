@@ -66,6 +66,27 @@ void ProcessDMREncryption (dsd_opts * opts, dsd_state * state)
    * 3°) Play all AMBE decoded sample (see the "for" loop below)
    *
    * */
+//   uint8_t (*KeyStream[6][3][49]);
+//   uint8_t * KeyStream[] =  state->KeyStream;
+
+
+   if (opts->EncryptionMode ==  MODE_BASIC_PRIVACY ){    
+       //fprintf(stderr, "Encryption is: BP \n");
+       for(Frame = 0; Frame < 6; Frame++)
+            {
+             for(i = 0; i < 3; i++)
+              {
+                for(j = 0; j < 49; j++)
+                {
+        	      int aaa = (state->KeyStream)[Frame][i][j];
+        //	      fprintf(stderr, "%d", aaa);
+                      TSVoiceSupFrame->TimeSlotAmbeVoiceFrame[Frame].AmbeBit[i][j] ^= aaa;
+        //	       fprintf(stderr, "%d", TSVoiceSupFrame->TimeSlotAmbeVoiceFrame[Frame].AmbeBit[i][j]);
+                }
+              }
+        }
+
+   }
 
   /*
    * Play all AMBE voice samples

@@ -373,7 +373,7 @@ typedef struct
   int dPMR_next_part_of_superframe;
 
   int EncryptionMode;
-
+  unsigned int bp_key;
 } dsd_opts;
 
 typedef struct
@@ -515,7 +515,10 @@ typedef struct
   NxdnLich_t NxdnLich;
 
   int printNXDNAmbeVoiceSampleHex;
+  uint8_t KeyStream[6][3][49];
+
 } dsd_state;
+
 
 
 /* Only for debug
